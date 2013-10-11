@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'harness/haproxy'
+require 'harness-haproxy'
 require 'minitest/unit'
 require 'minitest/autorun'
 require 'webmock/minitest'

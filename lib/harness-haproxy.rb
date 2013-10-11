@@ -1,1 +1,1 @@
-require 'harness/varnish'
+require 'harness/haproxy'
