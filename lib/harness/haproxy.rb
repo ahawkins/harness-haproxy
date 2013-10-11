@@ -2,23 +2,37 @@ require "harness/haproxy/version"
 
 require 'harness'
 require 'uri'
-require 'net/http'
+require 'net/https'
 require 'csv'
 
 module Harness
   class HAProxyGauge
     include Instrumentation
 
-    def initialize(url, user, pass)
-      @url, @user, @pass = url, user, pass
+    BadResponseError = Class.new StandardError
+
+    def initialize(url)
+      @url = url
     end
 
     def log
-      uri = URI.parse "http://#{@url}/haproxy?stats;csv"
+      uri = URI.parse @url
 
       http = Net::HTTP.new uri.host, uri.port
+      http.use_ssl = uri.scheme == 'https'
+
       request = Net::HTTP::Get.new uri.request_uri
-      request.basic_auth @user, @pass
+
+      if uri.user || uri.password
+        request.basic_auth uri.user, uri.password
+      end
+
+      response = http.request request
+
+      if response.code.to_i != 200
+        raise BadResponseError, "Server did not respond correctly! #{response.inspect}"
+      end
+
       response = http.request request
 
       CSV.parse(response.body, headers: true) do |row|
