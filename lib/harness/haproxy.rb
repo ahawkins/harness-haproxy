@@ -35,7 +35,9 @@ module Harness
 
       response = http.request request
 
-      CSV.parse(response.body, headers: true) do |row|
+      csv = response.body.gsub /^#\s+/, ''
+
+      CSV.parse(csv, headers: true) do |row|
         pxname = row.field 'pxname'
         server = row.field('svname').downcase
 

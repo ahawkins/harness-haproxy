@@ -1,12 +1,12 @@
-# Harness::Varnish
+# Harness::HAProxy
 
-TODO: Write a gem description
+Log all HAProxy stats to Harness as guages.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'harness-varnish'
+    gem 'harness-haproxy'
 
 And then execute:
 
@@ -14,11 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install harness-varnish
-
-## Usage
-
-TODO: Write usage instructions here
+    $ gem install harness-haproxy
 
 ## Contributing
 

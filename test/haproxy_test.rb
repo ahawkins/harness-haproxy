@@ -9,6 +9,7 @@ class HAProxyGaugeTest < MiniTest::Unit::TestCase
     super
     @gauge = Harness::HAProxyGauge.new url
     @csv = <<-csv
+#
 pxname,svname,qcur,qmax,scur,smax,slim,stot,bin,bout,dreq,dresp,ereq,econ,eresp,wretr,wredis,status,weight,act,bck,chkfail,chkdown,lastchg,downtime,qlimit,pid,iid,sid,throttle,lbtot,tracked,type,rate,rate_lim,rate_max,check_status,check_code,check_duration,hrsp_1xx,hrsp_2xx,hrsp_3xx,hrsp_4xx,hrsp_5xx,hrsp_other,hanafail,req_rate,req_rate_max,req_tot,cli_abrt,srv_abrt,
 app,FRONTEND,,,19,41,2000,1389,166416061,554877036,0,0,0,,,,,OPEN,,,,,,,,,1,1,0,,,,0,0,0,13,,,,0,100069,6995,3082,147,28,,47,75,110338,,,
     csv
